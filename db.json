@@ -1,20 +1,5 @@
 {
-  "posts": [
-    {
-      "name": "",
-      "email": "tes@gmail.com",
-      "mobile": "089999999",
-      "password": "andreas",
-      "id": 1
-    },
-    {
-      "name": "tes",
-      "mobile": "00000",
-      "email": "tes@gmail.com",
-      "password": "inites",
-      "id": 2
-    }
-  ],
+  "posts": [],
   "comments": [],
   "profile": {
     "name": "typicode"

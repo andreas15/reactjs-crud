@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import './AddUser.css'
+import styles from '../components/AddUser.css'
 const AddUser = () => {
     const [formData, setFormData, setData] = useState({
         name: '',
@@ -31,9 +31,9 @@ const AddUser = () => {
         getUser()
     };
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-7 ">
+        <div>
+            <div>
+                <div>
                     <h1>Add User Form</h1>
                 </div>
 
