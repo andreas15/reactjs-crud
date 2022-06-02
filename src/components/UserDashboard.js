@@ -14,15 +14,18 @@ const UserDashboard = () => {
         getUser()
     }, []);
 
+    // function integrasi untuk menampilkan data
     const getUser = async () => {
         await axios.get('http://localhost:4000/posts').then(res => setData(res.data));
     }
 
+    //function integrasi untuk menghapus data
     const handleDelete = async (id) => {
         await axios.delete('http://localhost:4000/posts/' + id).then(res => alert('Hapus data berhasil'))
         getUser()
     }
 
+    // function untuk mengupdate data melalui modal
     const handleUpdate = async (e) => {
         let response = await axios.put('http://localhost:4000/posts/' + formData.id, formData);
 
@@ -43,6 +46,8 @@ const UserDashboard = () => {
 
 
     return (
+
+        // table untuk menampilkan data
         <div>
             <h1>User Dashboard</h1>
             <table class="table table-hover">
@@ -55,6 +60,7 @@ const UserDashboard = () => {
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {data &&
                         data.map((user) => (
@@ -68,6 +74,7 @@ const UserDashboard = () => {
                                         display: 'flex',
                                         justifyContent: 'space-between'
                                     }}>
+
                                     <button
                                         className='btn btn-info'
                                         data-bs-toggle="modal"
@@ -78,8 +85,9 @@ const UserDashboard = () => {
                                             mobile: user.mobile,
                                             password: user.password,
                                             id: user.id
-                                        })}
-                                    >Edit</button>
+                                        })}>Edit
+                                    </button>
+
                                     <button
                                         className='btn btn-danger'
                                         onClick={() => handleDelete(user.id)}>Hapus</button>
@@ -88,6 +96,8 @@ const UserDashboard = () => {
                         ))}
                 </tbody>
             </table>
+        
+            {/* modal update data */}
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -102,6 +112,7 @@ const UserDashboard = () => {
                                 aria-label="Close">
                             </button>
                         </div>
+
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
                             <input
@@ -113,6 +124,7 @@ const UserDashboard = () => {
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             />
                         </div>
+
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="number">No Telepon</label>
                             <input
@@ -124,6 +136,7 @@ const UserDashboard = () => {
                                 onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                             />
                         </div>
+
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Alamat Email</label>
                             <input
@@ -135,6 +148,7 @@ const UserDashboard = () => {
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             />
                         </div>
+
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Kata Sandi</label>
                             <input
@@ -146,9 +160,11 @@ const UserDashboard = () => {
                                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                             />
                         </div>
+
                         <div
                             class="modal-body">
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                             <button type="button" class="btn btn-primary" onClick={handleUpdate}>Simpan</button>

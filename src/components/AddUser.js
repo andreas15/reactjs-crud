@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import styles from '../components/AddUser.css'
+
+    // function untuk menambahkan data
 const AddUser = () => {
     const [formData, setFormData, setData] = useState({
         name: '',
@@ -9,10 +10,12 @@ const AddUser = () => {
         password: '',
     });
 
+    // function integrasi dengan database
     const getUser = async () => {
         await axios.get('http://localhost:4000/posts').then(res => setData(res.data));
     }
 
+    // function integrasi untuk menambahkan data 
     const handleFormSubmit = async (e) => {
         let response = await axios.post('http://localhost:4000/posts', formData);
 
@@ -30,62 +33,62 @@ const AddUser = () => {
         })
         getUser()
     };
+
     return (
         <div>
+            {/* table input data */}
             <div>
-                <div>
-                    <h1>Add User Form</h1>
-                </div>
+                <h1>Add User Form</h1>
+            </div>
 
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="exampleFormControlInput1"
-                        placeholder="Nama Lengkap Anda"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="number">No Telepon</label>
-                    <input
-                        type="number"
-                        class="form-control"
-                        id="exampleFormControlInput1"
-                        placeholder="No Telepon Anda"
-                        value={formData.mobile}
-                        onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                    />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Alamat Email</label>
-                    <input
-                        type="email"
-                        class="form-control"
-                        id="exampleFormControlInput1"
-                        placeholder="Alamat Email Anda"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Kata Sandi</label>
-                    <input
-                        type="password"
-                        class="form-control"
-                        id="exampleFormControlInput1"
-                        placeholder="Kata Sandi Anda"
-                        value={formData.password}
-                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    />
-                </div>
-                <div>
-                    <div class='mb-3'>
-                        <button className='btn btn-success'
-                            onClick={handleFormSubmit}>Add User</button>
-                    </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="Nama Lengkap Anda"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}/>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="number">No Telepon</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="No Telepon Anda"
+                    value={formData.mobile}
+                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}/>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Alamat Email</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="Alamat Email Anda"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}/>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Kata Sandi</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="Kata Sandi Anda"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}/>
+            </div>
+
+            <div>
+                <div class='mb-3'>
+                    <button className='btn btn-success'
+                        onClick={handleFormSubmit}>Add User</button>
                 </div>
             </div>
         </div>
